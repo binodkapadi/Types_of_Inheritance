@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Base class
+class Animal {
+    protected:
+        string name;
+    public:
+        Animal(string n) {
+            name = n;
+        }
+};
+
+// Derived class 1
+class Mammal : virtual public Animal {
+    public:
+        Mammal(string n) : Animal(n) {}
+        void printType() {
+            cout << name << " is a mammal." << endl;
+        }
+};
+
+// Derived class 2
+class Bird : virtual public Animal {
+    public:
+        Bird(string n) : Animal(n) {}
+        void printType() {
+            cout << name << " is a bird." << endl;
+        }
+};
+
+// Derived class 3
+class Bat : public Mammal, public Bird {
+    public:
+        Bat(string n) : Animal(n), Mammal(n), Bird(n) {}
+        void printType() {
+            cout << name << " is a bat, a flying mammal." << endl;
+        }
+};
+
+int main() {
+    Bat bat("Batty");
+    bat.printType();
+    return 0;
+}
